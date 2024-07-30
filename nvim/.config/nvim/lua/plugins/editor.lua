@@ -20,16 +20,16 @@ return {
 			highlighters = {
 				hsl_color = {
 					pattern = "hsl%(%d+,? %d+%%?,? %d+%%?%)",
-					group = function(_, match)
-						local utils = require("solarized-osaka.hsl")
-						--- @type string, string, string
-						local nh, ns, nl = match:match("hsl%((%d+),? (%d+)%%?,? (%d+)%%?%)")
-						--- @type number?, number?, number?
-						local h, s, l = tonumber(nh), tonumber(ns), tonumber(nl)
-						--- @type string
-						local hex_color = utils.hslToHex(h, s, l)
-						return MiniHipatterns.compute_hex_color_group(hex_color, "bg")
-					end,
+					-- group = function(_, match)
+					-- 	local utils = require("solarized-osaka.hsl")
+					-- 	--- @type string, string, string
+					-- 	local nh, ns, nl = match:match("hsl%((%d+),? (%d+)%%?,? (%d+)%%?%)")
+					-- 	--- @type number?, number?, number?
+					-- 	local h, s, l = tonumber(nh), tonumber(ns), tonumber(nl)
+					-- 	--- @type string
+					-- 	local hex_color = utils.hslToHex(h, s, l)
+					-- 	return MiniHipatterns.compute_hex_color_group(hex_color, "bg")
+					-- end,
 				},
 			},
 		},
@@ -72,7 +72,7 @@ return {
 				function()
 					local builtin = require("telescope.builtin")
 					builtin.find_files({
-						no_ignore = false,
+						no_ignore = true,
 						hidden = true,
 					})
 				end,
@@ -83,6 +83,7 @@ return {
 				function()
 					local builtin = require("telescope.builtin")
 					builtin.live_grep({
+						no_ignore = true,
 						additional_args = { "--hidden" },
 					})
 				end,
@@ -216,7 +217,7 @@ return {
 		opts = {
 			filesystem = {
 				filtered_items = {
-					--visible = true,
+					-- visible = true,
 					hide_dotfiles = false,
 					hide_gitignored = false,
 					hide_by_name = {

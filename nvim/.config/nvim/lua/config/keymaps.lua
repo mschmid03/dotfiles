@@ -1,6 +1,6 @@
-local discipline = require("craftzdog.discipline")
-
-discipline.cowboy()
+-- local discipline = require("craftzdog.discipline")
+--
+-- discipline.cowboy()
 
 local keymap = vim.keymap
 local opts = { noremap = true, silent = true }
@@ -18,6 +18,11 @@ keymap.set("n", "<Leader>d", '"_d')
 keymap.set("n", "<Leader>D", '"_D')
 keymap.set("v", "<Leader>d", '"_d')
 keymap.set("v", "<Leader>D", '"_D')
+
+-- Insert new line
+
+keymap.set("n", "<C-o>", "o<Esc>^D$")
+keymap.set("n", "<C-S-o>", "O<Esc>^D$")
 
 -- Increment/decrement
 keymap.set("n", "+", "<C-a>")
@@ -57,6 +62,10 @@ keymap.set("n", "<C-w><left>", "<C-w><")
 keymap.set("n", "<C-w><right>", "<C-w>>")
 keymap.set("n", "<C-w><up>", "<C-w>+")
 keymap.set("n", "<C-w><down>", "<C-w>-")
+
+-- Move view
+keymap.set("n", "<M-j>", "<cmd>m .+1<CR>==", { desc = "Move Down" })
+keymap.set("n", "<M-k>", "<cmd>m .-2<CR>==", { desc = "Move Up" })
 
 -- Diagnostics
 keymap.set("n", "<C-j>", function()
