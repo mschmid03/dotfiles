@@ -1,8 +1,8 @@
 # startup stuff
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+yabai -m signal --add event=application_launched action="yabai -m window --toggle float" app="^Systemeinstellungen$" label="Systemeinstellungen float" active="yes"
 sudo yabai --load-sa
 yabai -m config debug_output on
-
 
 # global settings
 yabai -m config                                 \
@@ -22,7 +22,7 @@ yabai -m config                                 \
     normal_window_opacity        0.95           \
     window_opacity               off            \
     insert_feedback_color        0xffd75f5f     \
-    split_ratio                  0.50           \
+    split_ratio                  0.66           \
     split_type                   auto           \
     auto_balance                 off            \
     top_padding                  12             \
@@ -37,14 +37,12 @@ yabai -m config                                 \
     mouse_drop_action            swap           \
     mouse_follows_focus          on             \
 
+float system preferences
+yabai -m rule --add app="^System Settings$" manage=off
 
-# float system preferences
-yabai -m rule --add app="^Systemeinstellungen$" manage=off
-yabai -m rule --apply app="^Systemeinstellungen$" manage=off
-yabai -m rule --add app="^Thunderbird$" space=5
-yabai -m rule --apply app="^Thunderbird$" space=5
-yabai -m rule --add app="^Microsoft Outlook$" manage=off
-yabai -m rule --apply app="^Microsoft Outlook$" manage=off
+yabai -m rule --add app="^Microsoft Outlook$" space=5
+
+yabai -m rule --add app="^iTerm2$" space=2
 
 borders active_color=0xffcba6f7 inactive_color=0xff494d64 width=3.0 &
 

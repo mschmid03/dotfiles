@@ -68,7 +68,7 @@ return {
 				desc = "Find Plugin File",
 			},
 			{
-				";f",
+				"\\f",
 				function()
 					local builtin = require("telescope.builtin")
 					builtin.find_files({
@@ -79,7 +79,7 @@ return {
 				desc = "Lists files in your current working directory, respects .gitignore",
 			},
 			{
-				";r",
+				"\\r",
 				function()
 					local builtin = require("telescope.builtin")
 					builtin.live_grep({
@@ -98,7 +98,7 @@ return {
 				desc = "Lists open buffers",
 			},
 			{
-				";t",
+				"\\t",
 				function()
 					local builtin = require("telescope.builtin")
 					builtin.help_tags()
@@ -106,7 +106,7 @@ return {
 				desc = "Lists available help tags and opens a new window with the relevant help info on <cr>",
 			},
 			{
-				";;",
+				"\\;",
 				function()
 					local builtin = require("telescope.builtin")
 					builtin.resume()
@@ -114,7 +114,7 @@ return {
 				desc = "Resume the previous telescope picker",
 			},
 			{
-				";e",
+				"\\e",
 				function()
 					local builtin = require("telescope.builtin")
 					builtin.diagnostics()
@@ -122,7 +122,7 @@ return {
 				desc = "Lists Diagnostics for all open buffers or a specific buffer",
 			},
 			{
-				";s",
+				"\\s",
 				function()
 					local builtin = require("telescope.builtin")
 					builtin.treesitter()
@@ -162,6 +162,9 @@ return {
 				layout_strategy = "horizontal",
 				layout_config = { prompt_position = "top" },
 				sorting_strategy = "ascending",
+				path_display = {
+					"filename_first",
+				},
 				winblend = 0,
 				mappings = {
 					n = {},
@@ -209,6 +212,12 @@ return {
 			telescope.setup(opts)
 			require("telescope").load_extension("fzf")
 			require("telescope").load_extension("file_browser")
+		end,
+	},
+	{
+		"nvim-telescope/telescope-frecency.nvim",
+		config = function()
+			require("telescope").load_extension("frecency")
 		end,
 	},
 	{
