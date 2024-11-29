@@ -77,7 +77,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker zsh-autosuggestions zsh-syntax-highlighting thefuck zsh-interactive-cd)
+plugins=(git docker zsh-autosuggestions zsh-syntax-highlighting thefuck copypath )
 
 source $ZSH/oh-my-zsh.sh
 
@@ -120,3 +120,9 @@ source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+if (( $+commands[zoxide] )); then
+  eval "$(zoxide init zsh)"
+else
+  echo 'zoxide: command not found, please install it from https://github.com/ajeetdsouza/zoxide'
+fi
