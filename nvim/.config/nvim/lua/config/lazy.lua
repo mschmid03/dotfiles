@@ -12,16 +12,33 @@ require("lazy").setup({
     -- add LazyVim and import its plugins
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
     -- import any extras modules here
-    -- { import = "lazyvim.plugins.extras.lang.typescript" },
-    -- { import = "lazyvim.plugins.extras.lang.json" },
-    -- { import = "lazyvim.plugins.extras.ui.mini-animate" },
-    -- { import = "plugins.extras.editor.telescope" },
+    { import = "lazyvim.plugins.extras.coding.mini-surround" },
+    { import = "lazyvim.plugins.extras.coding.neogen" },
+    { import = "lazyvim.plugins.extras.coding.blink" },
+    { import = "lazyvim.plugins.extras.formatting.prettier" },
+    { import = "lazyvim.plugins.extras.editor.dial" },
+    { import = "lazyvim.plugins.extras.editor.harpoon2" },
+    { import = "lazyvim.plugins.extras.lang.typescript" },
+    { import = "lazyvim.plugins.extras.lang.json" },
+    { import = "lazyvim.plugins.extras.lang.rust" },
+    { import = "lazyvim.plugins.extras.lang.tailwind" },
+    { import = "lazyvim.plugins.extras.lang.astro" },
+    { import = "lazyvim.plugins.extras.lang.yaml" },
+    { import = "lazyvim.plugins.extras.lang.vue" },
+    { import = "lazyvim.plugins.extras.lang.python" },
+    { import = "lazyvim.plugins.extras.util.octo" },
+    { import = "plugins.extras.coding.autopairs" },
+    { import = "plugins.extras.coding.comment" },
+    { import = "plugins.extras.editor.overseer" },
+    { import = "plugins.extras.editor.refactoring" },
     { import = "plugins.extras.editor.fzf" },
+    { import = "plugins.extras.linting.eslint" },
+
     -- import/override with your plugins
     { import = "plugins" },
 
     -- ensure at last
-    { import = "plugins.extras.vscode" },
+    -- { import = "plugins.extras.vscode" },
     pcall(require, "private") and { import = "private" } or nil,
   },
   defaults = {
@@ -36,7 +53,7 @@ require("lazy").setup({
   dev = {
     path = "~/.ghq/github.com",
   },
-  install = { colorscheme = { "catppuccin-mocha" } },
+  install = { colorscheme = { "catpuccin" } },
   checker = { enabled = false }, -- automatically check for plugin updates
   change_detection = {
     notify = false,

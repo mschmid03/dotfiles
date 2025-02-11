@@ -1,7 +1,8 @@
 # startup stuff
+sudo yabai --load-sa
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 yabai -m signal --add event=application_launched action="yabai -m window --toggle float" app="^Systemeinstellungen$" label="Systemeinstellungen float" active="yes"
-sudo yabai --load-sa
+yabai -m signal --add event=application_launched action="yabai -m window --toggle float" app="^QuickTime Player$" label="QuickTime float" active="yes"
 yabai -m config debug_output on
 
 # global settings
@@ -42,6 +43,14 @@ yabai -m rule --add app="^System Settings$" manage=off
 
 yabai -m rule --add app="^Microsoft Outlook$" space=5
 
+yabai -m rule --add app="^Zen Browser$" title="Library" manage=off
+
+yabai -m rule --add app="^Zen Browser$" title="^Extension: \(Bitwarden Password Manager\) - Bitwarden$" manage=off
+yabai -m rule --add app="^Finder$" title="^Copy$" manage=off
+yabai -m rule --add app="Bitwarden" manage=off
+yabai -m rule --add app="^QuickTime Player$" manage=off
+yabai -m rule --add app="^Docker Desktop$" manage=off
+yabai -m rule --add app="^Proton VPN$"  manage=off
 yabai -m rule --add app="^iTerm2$" space=2
 
 borders active_color=0xffcba6f7 inactive_color=0xff494d64 width=3.0 &

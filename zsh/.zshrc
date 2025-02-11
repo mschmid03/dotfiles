@@ -77,13 +77,12 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker zsh-autosuggestions zsh-syntax-highlighting thefuck copypath )
+plugins=(git docker zsh-syntax-highlighting autojump zsh-autosuggestions thefuck copypath hitchhiker )
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 source <(fzf --zsh)
-source zsh-interactive-cd.plugin.zsh
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -110,10 +109,21 @@ source zsh-interactive-cd.plugin.zsh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias ls="eza"
-alias brew="sudo -u brew -S brew"
+# alias brew="sudo -u brew -S brew"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+#pyenv stuff
+echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
+echo '[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
+echo 'eval "$(pyenv init - zsh)"' >> ~/.zshrc
+
+# alias to love
+alias love="/Applications/love.app/Contents/MacOS/love"
+
+# api key for openai
+export OPENAI_API_KEY="TOKEN"
 
 PATH=~/.console-ninja/.bin:$PATH
 source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
@@ -126,3 +136,97 @@ if (( $+commands[zoxide] )); then
 else
   echo 'zoxide: command not found, please install it from https://github.com/ajeetdsouza/zoxide'
 fi
+
+# Plugin keybinds
+bindkey '^ ' autosuggest-accept
+
+# Custom commands
+# Combine zoxide with autojump
+zo() {
+  cwd=$(pwd)
+  testv=$(z "$1" 2>&1)
+
+  zi $1
+  if [[ $testv != "zoxide: no match found" ]]; then
+  jo $(pwd)
+  cd "$cwd"
+  fi
+}
+# Greet me with hitchiker quote
+hitchhiker | cowsay -f asc3p0 -t
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+export PATH="/opt/homebrew/lib/ruby/gems/3.4.0/gems/vimgolf-0.5.0/bin/vimgolf:$PATH"
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+export PATH="/opt/homebrew/lib/ruby/gems/3.4.0/gems/vimgolf-0.5.0/bin:$PATH"
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"

@@ -1,5 +1,5 @@
 return {
-  { "catppuccin", enabled = false },
+  { "catppuccin/nvim", enabled = false },
 
   {
     "f-person/auto-dark-mode.nvim",

@@ -20,9 +20,7 @@ return {
     lazy = true,
     opts = {
       draw = {
-        animation = function()
-          return 0
-        end,
+        symbol = "╎",
       },
     },
   },
@@ -129,40 +127,5 @@ return {
       "SortJSONByKeyLengthReverse",
     },
     config = true,
-  },
-
-  {
-    "folke/zen-mode.nvim",
-    cmd = { "ZenMode" },
-    opts = {
-      window = {
-        width = 0.8,
-        options = {
-          number = false,
-        },
-      },
-      plugins = {
-        gitsigns = {
-          enabled = true, -- true to disable...
-        },
-      },
-    },
-    {
-      "chipsenkbeil/distant.nvim",
-      branch = "v0.3",
-      config = function()
-        require("distant"):setup({
-          servers = {
-            ["188.245.148.152"] = {
-              connect = {
-                default = {
-                  username = "root",
-                },
-              },
-            },
-          },
-        })
-      end,
-    },
   },
 }

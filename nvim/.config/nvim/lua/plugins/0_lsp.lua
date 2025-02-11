@@ -7,20 +7,6 @@ local vscode = require("util.vscode")
 vim.g.autoformat = vscode.get_setting("editor.formatOnSave")
 
 return {
-  -- lspconfig
-  {
-    "neovim/nvim-lspconfig",
-    lazy = true,
-    event = { "VeryLazy" },
-    opts = {
-      diagnostics = {
-        virtual_text = {
-          source = false,
-        },
-      },
-    },
-  },
-
   {
     "williamboman/mason.nvim",
     dependencies = {
@@ -28,8 +14,23 @@ return {
     },
     opts = {
       log_level = vim.log.levels.OFF,
-      ensure_installed = {
-        "stylua",
+    },
+  },
+
+  -- lsp config
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        ruff = {
+          init_options = {
+            settings = {
+              lint = {
+                enable = false,
+              },
+            },
+          },
+        },
       },
     },
   },
@@ -38,7 +39,78 @@ return {
   {
     "tamago324/nlsp-settings.nvim",
     cmd = "LspSettings",
-    opts = {},
+    opts = {
+      servers = {
+        vtsls = {
+          enabled = false,
+        },
+        tsserver = {
+          enabled = true,
+          settings = {
+            typescript = {
+              inlayHints = {
+                includeInlayEnumMemberValueHints = true,
+                includeInlayFunctionLikeReturnTypeHints = true,
+                includeInlayFunctionParameterTypeHints = true,
+                includeInlayParameterNameHints = "literals",
+                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                includeInlayPropertyDeclarationTypeHints = true,
+                includeInlayVariableTypeHints = false,
+                includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+              },
+            },
+            completions = {
+              completeFunctionCalls = true,
+            },
+          },
+          keys = {
+            {
+              "<leader>co",
+              function()
+                vim.lsp.buf.code_action({
+                  apply = true,
+                  context = {
+                    only = { "source.organizeImports.ts" },
+                    diagnostics = {},
+                  },
+                })
+              end,
+              desc = "Organize Imports",
+            },
+            {
+              "<leader>cR",
+              function()
+                vim.lsp.buf.code_action({
+                  apply = true,
+                  context = {
+                    only = { "source.removeUnused.ts" },
+                    diagnostics = {},
+                  },
+                })
+              end,
+              desc = "Remove Unused Imports",
+            },
+          },
+        },
+        astro = {},
+        somesass_ls = {
+          root_dir = function(...)
+            return require("lspconfig.util").root_pattern(".git")(...)
+          end,
+          init_options = {
+            workspace = root_dir,
+          },
+        },
+      },
+      setup = {
+        tsserver = function()
+          return false
+        end,
+        vtsls = function()
+          return true
+        end,
+      },
+    },
   },
 
   -- stop inactive lsp clients
@@ -51,14 +123,4 @@ return {
       },
     },
   },
-
-  { import = "lazyvim.plugins.extras.lang.rust" },
-  { import = "lazyvim.plugins.extras.lang.json" },
-  { import = "lazyvim.plugins.extras.lang.tailwind" },
-  { import = "lazyvim.plugins.extras.lang.yaml" },
-  { import = "lazyvim.plugins.extras.lang.typescript" },
-  { import = "lazyvim.plugins.extras.lang.vue" },
-
-  { import = "plugins.extras.linting.eslint" },
-  { import = "plugins.extras.formatting.prettier" },
 }

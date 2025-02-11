@@ -14,11 +14,14 @@ return {
         "yaml",
         "html",
         "css",
+        "astro",
         "scss",
         "vue",
         "svelte",
         "markdown", -- lsp, lspsaga diagnostic
         "markdown_inline", -- lsp, lspsaga diagnostic
+        "ninja",
+        "rust",
       },
       ignore_install = {
         "haskell",

@@ -1,4 +1,5 @@
 local entry_display = require("telescope.pickers.entry_display")
+
 return {
   { import = "lazyvim.plugins.extras.editor.telescope" },
   {
